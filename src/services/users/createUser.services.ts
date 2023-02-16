@@ -4,7 +4,7 @@ import { IUserRequest } from "../../interfaces/users";
 import { hash } from "bcryptjs";
 import { AppError } from "../../errors/appError";
 
-const createClientService = async ({
+const createUserService = async ({
   name,
   email,
   cpf,
@@ -53,4 +53,4 @@ const createClientService = async ({
   return user;
 };
 
-export { createClientService };
+export { createUserService };

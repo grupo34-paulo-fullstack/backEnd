@@ -3,6 +3,6 @@ import { Router } from "express";
 
 const sessionRoutes = Router();
 
-sessionRoutes.post("", createSessionController);
+sessionRoutes.post("/session", createSessionController);
 
 export { sessionRoutes };
