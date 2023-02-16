@@ -1,13 +1,23 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/users.entities";
-import { IUserRequest } from "../../interfaces/clients";
+import { IUserRequest } from "../../interfaces/users";
 import { hash } from "bcryptjs";
 import { AppError } from "../../errors/appError";
 
 const createClientService = async ({
   name,
   email,
+  cpf,
   phone,
+  birthdate,
+  description,
+  cep,
+  state,
+  city,
+  street,
+  number,
+  complement,
+  is_announcer,
   password,
 }: IUserRequest): Promise<User> => {
   const userRepository = AppDataSource.getRepository(User);
@@ -25,7 +35,17 @@ const createClientService = async ({
   const user = await userRepository.create({
     name,
     email,
+    cpf,
     phone,
+    birthdate,
+    description,
+    cep,
+    state,
+    city,
+    street,
+    number,
+    complement,
+    is_announcer,
     password: hashedPassword,
   });
   await userRepository.save(user);

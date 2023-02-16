@@ -18,11 +18,11 @@ export class User {
   @Column()
   phone: string;
 
-  @Column()
+  @Column({})
   birthdate: Date;
 
   @Column({ nullable: true })
-  description: Date;
+  description: string;
 
   @Column()
   cep: string;
@@ -39,7 +39,7 @@ export class User {
   @Column()
   number: string;
 
-  @Column()
+  @Column({ nullable: true })
   complement: string;
 
   @Column()
