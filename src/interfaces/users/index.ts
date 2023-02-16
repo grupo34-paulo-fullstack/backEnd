@@ -8,7 +8,7 @@ export interface IUserRequest {
   email: string;
   cpf: string;
   phone: string;
-  birthdate: Date;
+  birthdate: string;
   description?: string;
   cep: string;
   state: string;

@@ -18,8 +18,8 @@ export class User {
   @Column()
   phone: string;
 
-  @Column({})
-  birthdate: Date;
+  @Column({ type: "date" })
+  birthdate: string;
 
   @Column({ nullable: true })
   description: string;
