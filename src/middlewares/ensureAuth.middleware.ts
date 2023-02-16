@@ -25,6 +25,7 @@ const ensureAuthMiddleware = async (
     }
 
     req.user = {
+      is_announcer: decoded.is_announcer,
       id: decoded.sub,
     };
 
