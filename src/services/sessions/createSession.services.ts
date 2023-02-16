@@ -22,7 +22,9 @@ const createSessionService = async ({
   if (!passwordMatch) {
     throw new AppError("Invalid user or password", 401);
   }
-  const token = jwt.sign({}, process.env.SECRET_KEY as string, {
+  const token = jwt.sign({
+    is_announcer: user.is_announcer
+  }, process.env.SECRET_KEY as string, {
     expiresIn: "24h",
     subject: user.id,
   });

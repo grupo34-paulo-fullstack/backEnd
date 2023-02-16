@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Announcement } from "./announcements.entities";
 
 @Entity("users")
 export class User {
@@ -51,8 +52,8 @@ export class User {
   //   @OneToMany(() => Comment, (comment) => comment.user, { eager: true })
   //   comments: Comment[];
 
-  //   @OneToMany(() => Announcement, (announcement) => announcement.user, { eager: true })
-  //   announcements: Announcement[];
+    @OneToMany(() => Announcement, (announcement) => announcement.user, { eager: true })
+    announcements: Announcement[];
 
   constructor() {
     if (!this.id) {
