@@ -1,1 +1,4 @@
-// example file
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
