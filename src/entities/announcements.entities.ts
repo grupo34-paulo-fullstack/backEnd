@@ -32,6 +32,9 @@ export class Announcement {
   @CreateDateColumn()
   createdAt: Date;
 
+  @Column()
+  description: string
+
   @Column({ default: true })
   is_active: boolean;
 
