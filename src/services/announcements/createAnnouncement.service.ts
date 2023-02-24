@@ -7,7 +7,7 @@ const createAnnouncementService = async (
   model: string,
   year: string,
   km: string,
-  price: string,
+  price: number,
   user_id: string
 ) => {
   const announcementRepository = AppDataSource.getRepository(Announcement);

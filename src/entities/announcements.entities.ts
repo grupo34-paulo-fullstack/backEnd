@@ -27,9 +27,9 @@ export class Announcement {
   km: string;
 
   @Column()
-  price: string;
+  price: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({default: new Date(), nullable: true})
   createdAt: Date;
 
   @Column()
