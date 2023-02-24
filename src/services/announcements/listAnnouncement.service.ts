@@ -4,7 +4,7 @@ import { Announcement } from "../../entities/announcements.entities";
 const listAnnouncementService = async () => {
  const announcementRepository = AppDataSource.getRepository(Announcement)
 
- const announcements = announcementRepository.find()
+ const announcements = await announcementRepository.find()
  
  return announcements
 };
