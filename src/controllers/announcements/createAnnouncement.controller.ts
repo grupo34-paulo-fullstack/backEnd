@@ -7,6 +7,8 @@ const createAnnouncementController = async (
 ) => {
   const user_id = request.user.id
 
+  console.log(user_id)
+
   const { image, model, year, km, price } = request.body;
 
   const announcementCreated = await createAnnouncementService(image, model, year, km, price, user_id);

@@ -1,5 +1,10 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
+import { User } from "./entities/users.entities";
+import { Comment } from "./entities/comments.entities";
+import { Announcement } from "./entities/announcements.entities";
+import { Gallery } from "./entities/gallery.entities";
+import { createTables1677251412167 } from "./migrations/1677251412167-createTables";
 
 const AppDataSource = new DataSource({
   type: "postgres",
@@ -10,8 +15,8 @@ const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DB,
   logging: true,
   synchronize: true,
-  entities: ["src/entities/*.ts"],
-  migrations: ["src/migrations/*.ts"],
+  entities: [User, Comment, Announcement, Gallery],
+  migrations: [createTables1677251412167],
 });
 
 export { AppDataSource };

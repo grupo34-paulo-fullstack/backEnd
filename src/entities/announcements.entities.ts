@@ -6,6 +6,7 @@ import {
   OneToMany,
   ManyToOne,
 } from "typeorm";
+import { Comment } from "./comments.entities";
 import { Gallery } from "./gallery.entities";
 import { User } from "./users.entities";
 
@@ -43,4 +44,10 @@ export class Announcement {
 
   @ManyToOne(() => User, (user) => user.announcements)
   user: User;
+
+  @OneToMany(() => Comment, (comment) => comment.announcement, {
+    eager: true,
+    onDelete: "CASCADE",
+  })
+  comments: Comment[];
 }
