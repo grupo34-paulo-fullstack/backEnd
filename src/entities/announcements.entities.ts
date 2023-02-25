@@ -24,19 +24,19 @@ export class Announcement {
   km: string;
   
   @Column()
-  price: string;
+  price: number;
 
   @Column()
   description: string;
+  
+  @CreateDateColumn({default: new Date(), nullable: true})
+  createdAt: Date;
 
   @Column()
   type_vehicle: string;
   
   @Column()
   image: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
 
   @Column({ default: true })
   is_active: boolean;
