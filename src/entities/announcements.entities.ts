@@ -15,25 +15,28 @@ export class Announcement {
   id: string;
 
   @Column()
-  image: string;
-
-  @Column()
-  model: string;
-
+  title: string;
+  
   @Column()
   year: string;
-
+  
   @Column()
   km: string;
-
+  
   @Column()
   price: number;
 
+  @Column()
+  description: string;
+  
   @CreateDateColumn({default: new Date(), nullable: true})
   createdAt: Date;
 
   @Column()
-  description: string
+  type_vehicle: string;
+  
+  @Column()
+  image: string;
 
   @Column({ default: true })
   is_active: boolean;
