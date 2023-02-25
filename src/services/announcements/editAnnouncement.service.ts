@@ -4,46 +4,37 @@ import { AppError } from "../../errors/appError";
 import { IAnnouncementUpdate } from "../../interfaces/announcements";
 
 const editAnnouncementService = async (
-  announcement: IAnnouncementUpdate
+  data: IAnnouncementUpdate,
+  id: string
 ): Promise<Announcement | null | undefined> => {
-  const {
-    announcement_id,
-    title,
-    year,
-    km,
-    price,
-    description,
-    type_vehicle,
-    image,
-    is_active,
-    gallery,
-  } = announcement;
-
   const announcementRepository = AppDataSource.getRepository(Announcement);
 
-  const currentAnnouncement = await announcementRepository.findOneBy({ id: announcement_id });
+  const currentAnnouncement = await announcementRepository.findOneBy({ id });
 
-  if (currentAnnouncement) {
-    const newAnnouncement = {
-      title: title ? title : currentAnnouncement.title,
-      year: year ? year : currentAnnouncement.year,
-      km: km ? km : currentAnnouncement.km,
-      price: price ? price : currentAnnouncement.price,
-      description: description ? description : currentAnnouncement.description,
-      type_vehicle: type_vehicle ? type_vehicle : currentAnnouncement.type_vehicle,
-      image: image ? image : currentAnnouncement.image,
-      is_active: is_active ? is_active : currentAnnouncement.is_active,
-      gallery: gallery ? gallery : currentAnnouncement.gallery,
-    };
-
-    await announcementRepository.update(announcement_id, newAnnouncement);
-
-    const updatedAnnouncement = announcementRepository.findOneBy({ id: announcement_id });
-
-    return updatedAnnouncement;
+  if (!currentAnnouncement) {
+    throw new AppError("Announcement not found", 404);
   }
 
-  throw new AppError("Announcement not found", 404);
+  const newData = {
+    title: data.title ? data.title : currentAnnouncement.title,
+    year: data.year ? data.year : currentAnnouncement.year,
+    km: data.km ? data.km : currentAnnouncement.km,
+    price: data.price ? data.price : currentAnnouncement.price,
+    description: data.description
+      ? data.description
+      : currentAnnouncement.description,
+    type_vehicle: data.type_vehicle
+      ? data.type_vehicle
+      : currentAnnouncement.type_vehicle,
+    image: data.image ? data.image : currentAnnouncement.image,
+    is_active: data.is_active ? data.is_active : currentAnnouncement.is_active,
+  };
+
+  await announcementRepository.update(id, newData);
+
+  const updatedAnnouncement = await announcementRepository.findOneBy({ id });
+
+  return updatedAnnouncement;
 };
 
-export default editAnnouncementService;
+export { editAnnouncementService };

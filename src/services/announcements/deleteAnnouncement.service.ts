@@ -2,8 +2,6 @@ import { AppDataSource } from "../../data-source"
 import { Announcement } from "../../entities/announcements.entities"
 import { AppError } from "../../errors/appError"
 
-
-
 const deleteAnnouncementService = async (id: string) => {
 
     const announcementRepository = AppDataSource.getRepository(Announcement)
@@ -19,4 +17,4 @@ const deleteAnnouncementService = async (id: string) => {
     return ""
 }
 
-export default deleteAnnouncementService
+export { deleteAnnouncementService }

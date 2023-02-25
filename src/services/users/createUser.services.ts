@@ -32,7 +32,7 @@ const createUserService = async ({
   if (!password) {
     throw new AppError("Password is missing");
   }
-  const user = await userRepository.create({
+  const user = userRepository.create({
     name,
     email,
     cpf,
