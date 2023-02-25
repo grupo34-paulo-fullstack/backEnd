@@ -1,39 +1,49 @@
 import { AppDataSource } from "../../data-source";
 import { Announcement } from "../../entities/announcements.entities";
 import { AppError } from "../../errors/appError";
-import { IAnnouncement } from "../../interfaces/announcements";
+import { IAnnouncementUpdate } from "../../interfaces/announcements";
 
+const editAnnouncementService = async (
+  announcement: IAnnouncementUpdate
+): Promise<Announcement | null | undefined> => {
+  const {
+    announcement_id,
+    title,
+    year,
+    km,
+    price,
+    description,
+    type_vehicle,
+    image,
+    is_active,
+    gallery,
+  } = announcement;
 
-const editAnnouncementService = async (announcement: IAnnouncement): Promise<Announcement | null | undefined> => {
+  const announcementRepository = AppDataSource.getRepository(Announcement);
 
-        const {id, image, model, year, km, price, is_active, gallery} = announcement;
+  const currentAnnouncement = await announcementRepository.findOneBy({ id: announcement_id });
 
-        const announcementRepository = AppDataSource.getRepository(Announcement);
+  if (currentAnnouncement) {
+    const newAnnouncement = {
+      title: title ? title : currentAnnouncement.title,
+      year: year ? year : currentAnnouncement.year,
+      km: km ? km : currentAnnouncement.km,
+      price: price ? price : currentAnnouncement.price,
+      description: description ? description : currentAnnouncement.description,
+      type_vehicle: type_vehicle ? type_vehicle : currentAnnouncement.type_vehicle,
+      image: image ? image : currentAnnouncement.image,
+      is_active: is_active ? is_active : currentAnnouncement.is_active,
+      gallery: gallery ? gallery : currentAnnouncement.gallery,
+    };
 
-        const currentAnnouncement = await announcementRepository.findOneBy({id});
+    await announcementRepository.update(announcement_id, newAnnouncement);
 
-        if(currentAnnouncement) {
-            const newAnnouncement = {
-                id: id ? id : currentAnnouncement.id, 
-                image: image ? image : currentAnnouncement.image, 
-                model: model ? model : currentAnnouncement.model, 
-                year: year ? year : currentAnnouncement.year, 
-                km: km ? km : currentAnnouncement.km, 
-                price: price ? price : currentAnnouncement.price, 
-                createdAt: currentAnnouncement.createdAt,
-                is_active: is_active ? is_active : currentAnnouncement.is_active, 
-                user_id: currentAnnouncement.user.id, 
-                gallery: gallery ? gallery : currentAnnouncement.gallery,
-            };
-            
-            await announcementRepository.update(id ,newAnnouncement)
-    
-            const updatedAnnouncement = announcementRepository.findOneBy({id})
-            
-            return updatedAnnouncement
-        }
+    const updatedAnnouncement = announcementRepository.findOneBy({ id: announcement_id });
 
-        throw new AppError("Announcement not found", 404)
-}
+    return updatedAnnouncement;
+  }
 
-export default editAnnouncementService
+  throw new AppError("Announcement not found", 404);
+};
+
+export default editAnnouncementService;

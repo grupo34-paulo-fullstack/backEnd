@@ -5,7 +5,7 @@ import deleteAnnouncementService from "../../services/announcements/deleteAnnoun
 
 const deleteAnnouncementController = async (request: Request, response: Response) => {
 
-    const announcementId = request.params.id
+    const announcementId = request.body
 
     const deletedAnnouncement = await deleteAnnouncementService(announcementId)
 
