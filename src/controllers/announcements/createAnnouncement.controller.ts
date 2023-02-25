@@ -5,11 +5,11 @@ const createAnnouncementController = async (
   request: Request,
   response: Response
 ) => {
-  const user_id = request.user.id
+  // const user_id = request.user.id
 
-  const { title, year, km, price, description, type_vehicle, image } = request.body;
+  const data = request.body;
 
-  const announcementCreated = await createAnnouncementService(title, year, km, price, description, type_vehicle, image, user_id);
+  const announcementCreated = await createAnnouncementService(data);
 
   return response.status(201).json(announcementCreated)
 };

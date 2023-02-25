@@ -14,7 +14,7 @@ export interface IUserRequest {
   state: string;
   city: string;
   street: string;
-  number: string;
+  number: number;
   complement?: string;
   is_announcer: boolean;
   password: string;

@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Announcement } from "./announcements.entities";
+import { Exclude } from "class-transformer";
 
 @Entity("users")
 export class User {
@@ -38,7 +39,7 @@ export class User {
   street: string;
 
   @Column()
-  number: string;
+  number: number;
 
   @Column({ nullable: true })
   complement: string;
@@ -47,13 +48,18 @@ export class User {
   is_announcer: boolean;
 
   @Column()
+  @Exclude()
   password: string;
 
   //   @OneToMany(() => Comment, (comment) => comment.user, { eager: true })
   //   comments: Comment[];
 
-    @OneToMany(() => Announcement, (announcement) => announcement.user, { eager: true })
-    announcements: Announcement[];
+  @OneToMany(() => Announcement, (announcement) => announcement.user, {
+    eager: true,
+    onDelete: "CASCADE",
+  })
+  @Exclude()
+  announcements: Announcement[];
 
   constructor() {
     if (!this.id) {

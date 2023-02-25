@@ -8,37 +8,38 @@ import {
 } from "typeorm";
 import { Gallery } from "./gallery.entities";
 import { User } from "./users.entities";
+import { v4 as uuid } from "uuid";
 
 @Entity("announcements")
 export class Announcement {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  readonly id: string;
 
   @Column()
   title: string;
-  
+
   @Column()
-  year: string;
-  
+  year: number;
+
   @Column()
-  km: string;
-  
+  km: number;
+
   @Column()
   price: number;
 
   @Column()
   description: string;
-  
-  @CreateDateColumn({default: new Date(), nullable: true})
+
+  @CreateDateColumn({ default: new Date(), nullable: true })
   createdAt: Date;
 
   @Column()
   type_vehicle: string;
-  
+
   @Column()
   image: string;
 
-  @Column({ default: true })
+  @Column()
   is_active: boolean;
 
   @OneToMany(() => Gallery, (gallery) => gallery.announcement, {
@@ -47,6 +48,12 @@ export class Announcement {
   })
   gallery: Gallery[];
 
-  @ManyToOne(() => User, (user) => user.announcements)
+  @ManyToOne(() => User, (user) => user.announcements, { nullable: false, onDelete: "CASCADE" })
   user: User;
+
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
