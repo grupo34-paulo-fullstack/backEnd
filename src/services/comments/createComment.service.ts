@@ -22,7 +22,7 @@ const createCommentService = async (
 
   await commentRepository.save(commentCreated)
 
-  const commentResponse = {...commentCreated, announcement: {id: findAnnouncement!.id}, user: {id: findUser!.id}}
+  const commentResponse = {...commentCreated, announcement: findAnnouncement!.id, user: findUser!.id}
 
   return commentResponse
 };
