@@ -1,9 +1,10 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
-import path from 'path'
 import { User } from "./entities/users.entities";
+import { Comment } from "./entities/comments.entities";
 import { Announcement } from "./entities/announcements.entities";
 import { Gallery } from "./entities/gallery.entities";
+import path from 'path'
 
 
 const AppDataSource = new DataSource({
@@ -15,7 +16,7 @@ const AppDataSource = new DataSource({
   database: process.env.POSTGRES_DB,
   logging: true,
   synchronize: true,
-  entities: [User, Announcement, Gallery],
+  entities: [User, Announcement, Gallery, Comment],
   migrations: [path.join(__dirname, "src/migrations/*.ts")],
 });
 

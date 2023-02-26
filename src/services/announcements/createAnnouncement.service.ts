@@ -12,6 +12,8 @@ const createAnnouncementService = async (
 
   const findUser = await userRepository.findOneBy({ id: data.user_id });
 
+  console.log(findUser)
+
   const announcementCreated = announcementRepository.create({
     title: data.title,
     year: data.year,

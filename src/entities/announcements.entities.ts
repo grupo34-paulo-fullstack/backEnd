@@ -6,6 +6,7 @@ import {
   OneToMany,
   ManyToOne,
 } from "typeorm";
+import { Comment } from "./comments.entities";
 import { Gallery } from "./gallery.entities";
 import { User } from "./users.entities";
 import { v4 as uuid } from "uuid";
