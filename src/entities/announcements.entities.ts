@@ -9,31 +9,38 @@ import {
 import { Comment } from "./comments.entities";
 import { Gallery } from "./gallery.entities";
 import { User } from "./users.entities";
+import { v4 as uuid } from "uuid";
 
 @Entity("announcements")
 export class Announcement {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  readonly id: string;
+
+  @Column()
+  title: string;
+
+  @Column()
+  year: number;
+
+  @Column()
+  km: number;
+
+  @Column()
+  price: number;
+
+  @Column()
+  description: string;
+
+  @CreateDateColumn({ default: new Date(), nullable: true })
+  createdAt: Date;
+
+  @Column()
+  type_vehicle: string;
 
   @Column()
   image: string;
 
   @Column()
-  model: string;
-
-  @Column()
-  year: string;
-
-  @Column()
-  km: string;
-
-  @Column()
-  price: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @Column({ default: true })
   is_active: boolean;
 
   @OneToMany(() => Gallery, (gallery) => gallery.announcement, {
@@ -42,12 +49,12 @@ export class Announcement {
   })
   gallery: Gallery[];
 
-  @ManyToOne(() => User, (user) => user.announcements)
+  @ManyToOne(() => User, (user) => user.announcements, { nullable: false, onDelete: "CASCADE" })
   user: User;
 
-  @OneToMany(() => Comment, (comment) => comment.announcement, {
-    eager: true,
-    onDelete: "CASCADE",
-  })
-  comments: Comment[];
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
