@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { createUserController } from "../controllers/users/createUser.controller";
-import { ensureAuthMiddleware } from "../middlewares/ensureAuth.middleware";
+import { createUserController, forgetPasswordController } from "../controllers/users/createUser.controller";
 
 const usersRoutes = Router();
 
 usersRoutes.post("/users", createUserController);
+usersRoutes.post("/forget_password", forgetPasswordController);
 
 export { usersRoutes };
