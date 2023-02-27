@@ -60,9 +60,9 @@ The User object is defined as:
 | Method     | Routes   | Description     |
 | ---------- | -------- | --------------- |
 | POST       | /users   | Create user     |
-| PATCH      | /users   | Create user     |
+| PATCH      | /users   | Update user     |
 | GET        | /users   | List all users  |
-| DELETE     | /users   | List all users  |
+| DELETE     | /users   | Delete user	  |
 
 ---
 
@@ -536,8 +536,8 @@ Session object is defined as:
 
 |     Field   	| Type      | Description                    |
 | ----------- 	| ------    | ------------------------------ |
-| user          | User    	| User Object				     |
-| token       	| string    | JWT String	                 |
+| user          | User    	| User Object		     |
+| token       	| string    | JWT String	             |
 
 
 
@@ -550,7 +550,7 @@ Session object is defined as:
 
 | Method      | Routes            	| Description         |
 | ----------- | -------------------	| ------------------- |
-| POST        | /session    		    | Create Announcement |
+| POST        | /session    		| Create Announcement |
 
 ---
 
