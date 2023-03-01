@@ -49,6 +49,9 @@ export class Announcement {
   })
   gallery: Gallery[];
 
+  @OneToMany(() => Comment, (comment) => comment.announcement, { eager: true, nullable: true, onDelete: "CASCADE" })
+  comments: Comment[]
+
   @ManyToOne(() => User, (user) => user.announcements, { nullable: false, onDelete: "CASCADE" })
   user: User;
 
