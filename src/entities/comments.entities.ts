@@ -9,7 +9,7 @@ import {
 import { Announcement } from "./announcements.entities";
 import { User } from "./users.entities";
 
-@Entity("comment")
+@Entity("comments")
 export class Comment {
   @PrimaryGeneratedColumn("uuid")
   id: string;
