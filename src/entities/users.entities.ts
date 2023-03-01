@@ -55,8 +55,11 @@ export class User {
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
 
-    @OneToMany(() => Announcement, (announcement) => announcement.user)
-    announcements: Announcement[];
+  @OneToMany(() => Announcement, (announcement) => announcement.user, {
+    nullable: true,
+    onDelete: "CASCADE",
+  })
+  announcements: Announcement[];
 
   constructor() {
     if (!this.id) {
