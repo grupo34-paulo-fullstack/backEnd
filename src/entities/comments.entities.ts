@@ -20,7 +20,7 @@ export class Comment {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne(() => User, (user) => user.comments)
+  @ManyToOne(() => User, (user) => user.comments, { eager: true })
   user: User;
 
   @ManyToOne(() => Announcement, (announcement) => announcement.comments)
