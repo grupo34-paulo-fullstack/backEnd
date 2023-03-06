@@ -9,7 +9,7 @@ const deleteAnnouncementService = async (id: string) => {
     const getAnnouncement = await announcementRepository.findOneBy({id})
 
     if(!getAnnouncement) {
-        throw new AppError("Announcement not found", 404)
+        throw new AppError("Anúncio não encontrado", 404)
     }
     
     await announcementRepository.delete({id})

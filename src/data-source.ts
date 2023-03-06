@@ -5,7 +5,6 @@ import { Comment } from "./entities/comments.entities";
 import { Announcement } from "./entities/announcements.entities";
 import { Gallery } from "./entities/gallery.entities";
 import path from 'path'
-import {initial1677521953455} from './migrations/1677521953455-initial'
 
 
 const AppDataSource = new DataSource({
@@ -18,7 +17,7 @@ const AppDataSource = new DataSource({
   logging: true,
   synchronize: true,
   entities: [User, Announcement, Gallery, Comment],
-  migrations: [initial1677521953455],
+  migrations: [],
 });
 
 export { AppDataSource };

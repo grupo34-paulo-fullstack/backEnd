@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { Request, Response } from "express";
 import { createUserService } from "../../services/users/createUser.service";
 import { forgetPasswordService } from "../../services/users/forgetPassword.services";
@@ -5,7 +6,7 @@ import { forgetPasswordService } from "../../services/users/forgetPassword.servi
 const createUserController = async (req: Request, res: Response) => {
   const createdUser = await createUserService(req.body);
 
-  return res.status(201).json(createdUser);
+  return res.status(201).json(instanceToPlain(createdUser));
 };
 
 const forgetPasswordController = async (req: Request, res: Response) => {

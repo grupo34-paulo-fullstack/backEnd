@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { deleteAnnouncementService } from "../../services/announcements/deleteAnnouncement.service";
 
-
-
 const deleteAnnouncementController = async (request: Request, response: Response) => {
 
     const announcementId = request.params.id

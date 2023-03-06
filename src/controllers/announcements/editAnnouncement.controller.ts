@@ -2,8 +2,6 @@ import { Request, Response } from "express"
 import { IAnnouncementUpdate } from "../../interfaces/announcements"
 import { editAnnouncementService } from "../../services/announcements/editAnnouncement.service"
 
-
-
 const editAnnouncementsController = async (request: Request, response: Response) => {
 
     const data: IAnnouncementUpdate = request.body
