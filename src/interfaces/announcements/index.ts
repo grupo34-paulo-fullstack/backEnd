@@ -9,7 +9,7 @@ export interface IAnnouncement {
     type_vehicle: string;
     image: string;
     is_active: boolean;
-    gallery?: Gallery[]
+    gallery: Gallery[]
 }
 
 export interface IAnnouncementUpdate {
