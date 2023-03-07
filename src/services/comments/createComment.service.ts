@@ -27,4 +27,4 @@ const createCommentService = async (
   return commentResponse
 };
 
-export default createCommentService;
+export { createCommentService };
