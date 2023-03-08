@@ -597,3 +597,10 @@ Session object is defined as:
 	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hbm5vdW5jZXIiOmZhbHNlLCJpYXQiOjE2Nzc0MzEyNTYsImV4cCI6MTY3NzUxNzY1Niwic3ViIjoiMzNiN2Y4ZmUtMDVkZS00ZmMwLWJjYzYtODVkNjZhYzQ0NWYwIn0.B689VHbf7Z6AVUnjHHR1RkWacn2Fc1QV2LW1M47SD_g"
 }
 ```
+
+# Integrantes da equipe que construíram a aplicação:
+- Amon Fanticelli Moreira Rangel
+- Filipe Judiss Albuquerque
+- Lucas Vale
+
+# ATENÇÃO! Por ser um projeto FullStack é necessário estar com ambas as aplicações funcionando. Esse é o link do repositório do FrontEnd: https://github.com/grupo34-paulo-fullstack/frontend
