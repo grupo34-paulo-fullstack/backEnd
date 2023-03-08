@@ -9,10 +9,24 @@ const updateCommentService = async (description: string, id: string) => {
   await commentRepository.update(id, {
     description: description ? description : findComment?.description,
   });
-  
-  const commentUpdated = await commentRepository.findOneBy({ id });
 
-  return commentUpdated;
+  const commentUpdated = await commentRepository.find({
+    relations: { user: true, announcement: true },
+    where: { id },
+    select: {
+      announcement: { id: true },
+    },
+  });
+
+  const response = {
+    id: commentUpdated[0].id,
+    description: commentUpdated[0].description,
+    createdAt: commentUpdated[0].createdAt,
+    announcement: commentUpdated[0].announcement.id,
+    user: commentUpdated[0].user.id
+  }
+
+  return response;
 };
 
 export { updateCommentService };
