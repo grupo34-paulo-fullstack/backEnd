@@ -21,4 +21,4 @@ const listCommentsService = async (announcement_id: string) => {
   return cooments;
 };
 
-export default listCommentsService;
+export { listCommentsService };
