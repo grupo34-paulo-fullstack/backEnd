@@ -52,7 +52,7 @@ export class User {
   @Exclude()
   password: string;
 
-  @OneToMany(() => Comment, (comment) => comment.user)
+  @OneToMany(() => Comment, (comment) => comment.user, { onDelete: "CASCADE" })
   comments: Comment[];
 
   @OneToMany(() => Announcement, (announcement) => announcement.user, {
