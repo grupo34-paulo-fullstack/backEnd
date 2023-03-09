@@ -7,7 +7,7 @@ const retrieveUserController = async (request: Request, response: Response) => {
 
   const userFound = await retrieveUserService(id);
 
-  return response.status(201).json(instanceToPlain(userFound));
+  return response.status(200).json(instanceToPlain(userFound));
 };
 
 export { retrieveUserController };
